@@ -3,17 +3,10 @@
  *
  */
 namespace Thomas\Page;
-use Thomas\Base\IPage;
+use Thomas\Page\Page;
 
-class HtmlPage implements IPage  {
-    public $skin;
-    public $chunked = true;
-    public $components = array();
-
+class HtmlPage extends Page {
     public function render() {
-        var_dump('hello world');
-    }
-
-    public function addComponent() {
+        var_dump('hello, tom');
     }
 }
