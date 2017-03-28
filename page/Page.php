@@ -7,10 +7,9 @@ use Thomas\Base\IPage;
 use Thomas\Base\IComponent;
 
 class Page implements IPage {
-    public $skin = 'bootstrap';
-    public $chunked = true;
-    public $components = array();
-
+    /**
+     *
+     */
     public function render() {
     }
 

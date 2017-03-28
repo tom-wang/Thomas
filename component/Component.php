@@ -11,6 +11,6 @@ class Component implements IComponent {
      */
     public $page;
 
-    public function render() {
+    public function getHtml() {
     }
 }
