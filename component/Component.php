@@ -19,4 +19,10 @@ class Component implements IComponent {
 
     public function getScripts() {
     }
+
+    public function setCfg($cfg) {
+        foreach($cfg as $prop => $val) {
+            $this->$prop = $val;
+        }
+    }
 }

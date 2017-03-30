@@ -4,9 +4,8 @@
  */
 namespace Thomas\Component;
 use Thomas\Component\Component;
-use Thomas\Thomas;
 
-class HeadComponent extends Component {
+class FootComponent extends Component {
     public function getStyles() {
         return array(
         );

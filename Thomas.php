@@ -13,11 +13,6 @@ class Thomas {
     public static $appLibPath;
 
     /**
-     *
-     */
-    public static $appControllerDirName = 'controller';
-
-    /**
      * 当前应用使用的协议
      */
     public static $protocol;
@@ -46,6 +41,7 @@ class Thomas {
      * 应用的命名空间前缀
      */
     public static $appNSPrefix = 'App';
+    public static $appControllerNSPrefix = 'App\\Controller';
 
     /**
      * 路由器的类型
@@ -144,7 +140,7 @@ class Thomas {
         // 初始化环境
         self::initEnv();
 
-        $moduleClassName = self::$appNSPrefix . '\\' . ucfirst(self::$appControllerDirName) . '\\' . ucfirst(self::$module) . 'Module' ;
+        $moduleClassName = self::$appControllerNSPrefix . '\\' . ucfirst(self::$module) . 'Module' ;
         self::$moduleObj = $module = new $moduleClassName();
         $action = self::$action;
         $module->$action();
@@ -160,12 +156,22 @@ class Thomas {
     }
 
     /**
-     *
+     * 创建页面的快捷方法
      */
     public static function createPage($pageType, $cfg) {
         $pageClassName = 'Thomas\\Page\\' . ucfirst($pageType) . 'Page';
         self::$pageObj = $page = new $pageClassName();
         $page->setCfg($cfg);
         return $page;
+    }
+
+    /**
+     * 创建组件的快捷方法
+     */
+    public static function createComponent($componentType, $cfg) {
+        $componentClassName = 'Thomas\\Component\\' . ucfirst($componentType) . 'Component';
+        $component = new $componentClassName();
+        $component->setCfg($cfg);
+        return $component;
     }
 }
