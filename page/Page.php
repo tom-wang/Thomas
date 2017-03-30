@@ -20,4 +20,13 @@ class Page implements IPage {
         $component->page = $this;
         $this->components[] = $component;
     }
+
+    /**
+     *
+     */
+    public function setCfg($cfg) {
+        foreach($cfg as $prop => $val) {
+            $this->$prop = $val;
+        }
+    }
 }

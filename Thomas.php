@@ -53,11 +53,18 @@ class Thomas {
      * path：根据path解析，搜索引擎更友好
      */
     public static $router = 'query';
+    public static $routerObj;
 
     /**
      *
      */
     public static $module = 'index';
+    public static $moduleObj;
+
+    /**
+     * 当前页面对象
+     */
+    public static $pageObj;
 
     /**
      *
@@ -103,7 +110,7 @@ class Thomas {
      */
     public static function initModuleAction() {
         $className = 'Thomas\\Router\\' . ucfirst(self::$router) . 'Router';
-        $router = new $className();
+        self::$routerObj = $router = new $className();
         if(!empty($module = $router->getModule())) {
             self::$module = $module;
         }
@@ -138,7 +145,7 @@ class Thomas {
         self::initEnv();
 
         $moduleClassName = self::$appNSPrefix . '\\' . ucfirst(self::$appControllerDirName) . '\\' . ucfirst(self::$module) . 'Module' ;
-        $module = new $moduleClassName();
+        self::$moduleObj = $module = new $moduleClassName();
         $action = self::$action;
         $module->$action();
     }
@@ -150,5 +157,15 @@ class Thomas {
         foreach($cfg as $prop => $val) {
             self::$$prop = $val;
         }
+    }
+
+    /**
+     *
+     */
+    public static function createPage($pageType, $cfg) {
+        $pageClassName = 'Thomas\\Page\\' . ucfirst($pageType) . 'Page';
+        self::$pageObj = $page = new $pageClassName();
+        $page->setCfg($cfg);
+        return $page;
     }
 }

@@ -14,10 +14,12 @@ class HtmlPage extends Page {
     public $footComponent;
 
     public function setHeadComponent(IComponent $component) {
+        $component->page = $this;
         $this->headComponent = $component;
     }
 
     public function setFootComponent(IComponent $component) {
+        $component->page = $this;
         $this->footComponent = $component;
     }
 

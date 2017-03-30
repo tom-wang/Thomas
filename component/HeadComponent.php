@@ -3,15 +3,17 @@
  *
  */
 namespace Thomas\Component;
-use Thomas\Base\IComponent;
+use Thomas\Component\Component;
 
-class Component implements IComponent {
+class HeadComponent extends Component {
     /**
      * 组件所属的页面
      */
     public $page;
 
     public function getStyles() {
+        return array(
+        );
     }
 
     public function getHtml() {
