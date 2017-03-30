@@ -4,5 +4,6 @@
  */
 namespace Thomas\Base;
 interface IComponent {
-    public function render();
+    public function getHtml();
+    public function getScript();
 }

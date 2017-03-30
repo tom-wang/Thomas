@@ -33,9 +33,14 @@ class Thomas {
     public static $port;
 
     /**
+     * 
+     */
+    public static $baseUrl;
+
+    /**
      * 皮肤路径
      */
-    public static $appSkinPath;
+    public static $appSkinPath = '/skin';
 
     /**
      * 应用的命名空间前缀
@@ -108,6 +113,18 @@ class Thomas {
     }
 
     /**
+     *
+     */
+    public static function initEnv() {
+        // HTTP_HOST是包括端口的
+        $parts = explode(':', $_SERVER['HTTP_HOST']);
+        self::$host = $parts[0];
+        self::$port = empty($parts[1]) ? 80 : $parts[1];
+        self::$protocol = $_SERVER['REQUEST_SCHEME'];
+        self::$baseUrl = self::$protocol . '://' . self::$host . (80 == self::$port ? '' : (':' . self::$port));
+    }
+
+    /**
      * 启动应用
      */
     public static function run($cfg) {
@@ -117,6 +134,8 @@ class Thomas {
         self::initAppAutoLoader();
         // 初始化module/action
         self::initModuleAction();
+        // 初始化环境
+        self::initEnv();
 
         $moduleClassName = self::$appNSPrefix . '\\' . ucfirst(self::$appControllerDirName) . '\\' . ucfirst(self::$module) . 'Module' ;
         $module = new $moduleClassName();

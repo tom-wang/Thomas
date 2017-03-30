@@ -13,4 +13,7 @@ class Component implements IComponent {
 
     public function getHtml() {
     }
+
+    public function getScript() {
+    }
 }
